@@ -1312,6 +1312,12 @@ type KeyboardButton struct {
 	//
 	// optional
 	RequestLocation bool `json:"request_location,omitempty"`
+	// RequestChat If specified, pressing the button will open a list of suitable chats.
+	// Tapping on a chat will send its identifier to the bot in a “chat_shared” service message.
+	// Available in private chats only
+	//
+	// optional
+	RequestChat *KeyboardButtonRequestChat `json:"request_chat,omitempty"`
 	// RequestPoll if specified, the user will be asked to create a poll and send it
 	// to the bot when the button is pressed. Available in private chats only
 	//
@@ -1323,6 +1329,29 @@ type KeyboardButton struct {
 	//
 	// optional
 	WebApp *WebAppInfo `json:"web_app,omitempty"`
+}
+
+// KeyboardButtonRequestChat represents information about the selected chat will be shared
+// with the bot when the corresponding button is pressed. The bot will be granted requested
+// rights in the chat if appropriate
+type KeyboardButtonRequestChat struct {
+	// RequestID is Signed 32-bit identifier of the request, which will be received back
+	// in the ChatShared object. Must be unique within the message
+	RequestID int64 `json:"request_id"`
+	// ChatIsChannel Pass True to request a channel chat, pass False to request a group or a supergroup chat.
+	ChatIsChannel bool `json:"chat_is_channel"`
+	// ChatIsForum Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied.
+	//
+	// optional
+	ChatIsForum bool `json:"chat_is_forum,omitempty"`
+	// ChatIsCreated Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied.
+	//
+	// optional
+	ChatIsCreated bool `json:"chat_is_created,omitempty"`
+	// RequestTitle Pass True to request the chat's title
+	//
+	// optional
+	RequestTitle bool `json:"request_title,omitempty"`
 }
 
 // KeyboardButtonPollType represents type of poll, which is allowed to

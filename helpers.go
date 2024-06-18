@@ -652,6 +652,15 @@ func NewKeyboardButtonLocation(text string) KeyboardButton {
 	}
 }
 
+// NewKeyboardButtonChat creates a keyboard button that requests
+// user chats information upon click.
+func NewKeyboardButtonChat(text string, requestChat KeyboardButtonRequestChat) KeyboardButton {
+	return KeyboardButton{
+		Text:        text,
+		RequestChat: &requestChat,
+	}
+}
+
 // NewKeyboardButtonRow creates a row of keyboard buttons.
 func NewKeyboardButtonRow(buttons ...KeyboardButton) []KeyboardButton {
 	var row []KeyboardButton
