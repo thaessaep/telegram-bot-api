@@ -332,6 +332,25 @@ type Chat struct {
 	Location *ChatLocation `json:"location,omitempty"`
 }
 
+type ChatShared struct {
+	// RequestID is identifier of the request
+	RequestID int64 `json:"request_id"`
+	// ChatID is identifier of the shared chat
+	ChatID int64 `json:"chat_id"`
+	// Title for supergroups, channels and group chats
+	//
+	// optional
+	Title string `json:"title,omitempty"`
+	// UserName is username of the chat
+	//
+	// optional
+	UserName string `json:"username,omitempty"`
+	// Photo is available sizes of the chat photo
+	//
+	// optional
+	Photo []PhotoSize `json:"photo,omitempty"`
+}
+
 // IsPrivate returns if the Chat is a private conversation.
 func (c Chat) IsPrivate() bool {
 	return c.Type == "private"
@@ -377,7 +396,7 @@ type Message struct {
 	// Chat is the conversation the message belongs to
 	Chat *Chat `json:"chat"`
 	// ChatShared is chat, which user send
-	ChatShared *Chat `json:"chat_shared,omitempty"`
+	ChatShared *ChatShared `json:"chat_shared,omitempty"`
 	// ForwardFrom for forwarded messages, sender of the original message;
 	//
 	// optional
