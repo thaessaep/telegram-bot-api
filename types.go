@@ -376,6 +376,8 @@ type Message struct {
 	Date int `json:"date"`
 	// Chat is the conversation the message belongs to
 	Chat *Chat `json:"chat"`
+	// ChatShared is chat, which user send
+	ChatShared *Chat `json:"chat_shared,omitempty"`
 	// ForwardFrom for forwarded messages, sender of the original message;
 	//
 	// optional
